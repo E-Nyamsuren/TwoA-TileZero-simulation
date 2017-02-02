@@ -19,28 +19,6 @@ Namespace: TestApp
 Filename: Program.cs
 */
 
-// Change history:
-// [2016.10.06]
-//      - [SC] updated used namespace to TwoA
-//      - [SC] renamed variable 'hat' to 'twoA'
-// [2016.11.14]
-//      - [SC] deleted 'using Swiss';
-// [2016.11.29]
-//      - [SC] "gameplaylogs.xml" and "TwoAAppSettings.xml" are converted to embedded resources
-//      - [SC] updated description of example output for 'UpdateRatings' annd 'TargetScenarioID' methods
-//      - [SC] added 'testKnowledgeSpaceGeneration' method with examples of using knowledge space generator
-// [2017.01.02]
-//      - [SC] added 'TileZero' project
-//      - [SC] added 'evaluateTileZeroAIDifficulty' method
-//      - [SC] added 'doTileZeroSimulation' method
-//      - [SC] added references to external libraries: 
-//              'Microsoft.Msagl.dll'
-//              'Microsoft.Msagl.Drawing.dll'
-//              'Microsoft.Msagl.GraphViewerGdi.dll'
-// [2017.01.03]
-//      - [SC] added 'testScoreCalculations' method
-//
-
 #endregion Header
 
 namespace TestApp
