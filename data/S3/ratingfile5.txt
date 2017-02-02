@@ -1,0 +1,2 @@
+"ScenarioID"	"Rating"	"PlayCount"	"Uncertainty"
+"Very Hard AI"	"2.33263228849228"	"151"	"0"

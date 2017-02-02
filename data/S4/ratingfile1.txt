@@ -1,0 +1,7 @@
+"ScenarioID"	"Rating"	"PlayCount"	"Uncertainty"
+"Very Easy AI"	"-0.34482291758963"	"748"	"0"
+"Easy AI"	"0.21156085396051"	"733"	"0"
+"Medium Color AI"	"1.45332350727474"	"255"	"0"
+"Medium Shape AI"	"1.43073776466958"	"255"	"0"
+"Hard AI"	"1.53204196944866"	"255"	"0"
+"Very Hard AI"	"2.08631569457274"	"154"	"0"

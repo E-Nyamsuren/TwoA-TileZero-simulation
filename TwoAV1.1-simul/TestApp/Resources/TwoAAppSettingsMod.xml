@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<AdaptationData>
+  <Adaptation AdaptationID="Game difficulty - Player skill">
+    <Game GameID="TileZero">
+      <ScenarioData>
+        <Scenario ScenarioID="Very Easy AI">
+          <Rating>1.2</Rating>
+          <PlayCount>100</PlayCount>
+          <KFactor>0.0075</KFactor>
+          <Uncertainty>0.01</Uncertainty>
+          <LastPlayed>2012-12-31T11:59:59</LastPlayed>
+          <TimeLimit>900000</TimeLimit>
+        </Scenario>
+        <Scenario ScenarioID="Easy AI">
+          <Rating>1.4</Rating>
+          <PlayCount>100</PlayCount>
+          <KFactor>0.0075</KFactor>
+          <Uncertainty>0.01</Uncertainty>
+          <LastPlayed>2012-12-31T11:59:59</LastPlayed>
+          <TimeLimit>900000</TimeLimit>
+        </Scenario>
+        <Scenario ScenarioID="Medium Color AI">
+          <Rating>1.6</Rating>
+          <PlayCount>100</PlayCount>
+          <KFactor>0.0075</KFactor>
+          <Uncertainty>0.01</Uncertainty>
+          <LastPlayed>2012-12-31T11:59:59</LastPlayed>
+          <TimeLimit>900000</TimeLimit>
+        </Scenario>
+        <Scenario ScenarioID="Medium Shape AI">
+          <Rating>1.8</Rating>
+          <PlayCount>100</PlayCount>
+          <KFactor>0.0075</KFactor>
+          <Uncertainty>0.01</Uncertainty>
+          <LastPlayed>2012-12-31T11:59:59</LastPlayed>
+          <TimeLimit>900000</TimeLimit>
+        </Scenario>
+        <Scenario ScenarioID="Hard AI">
+          <Rating>6</Rating>
+          <PlayCount>100</PlayCount>
+          <KFactor>0.0075</KFactor>
+          <Uncertainty>0.01</Uncertainty>
+          <LastPlayed>2012-12-31T11:59:59</LastPlayed>
+          <TimeLimit>900000</TimeLimit>
+        </Scenario>
+        <Scenario ScenarioID="Very Hard AI">
+          <Rating>10</Rating>
+          <PlayCount>100</PlayCount>
+          <KFactor>0.0075</KFactor>
+          <Uncertainty>0.01</Uncertainty>
+          <LastPlayed>2012-12-31T11:59:59</LastPlayed>
+          <TimeLimit>900000</TimeLimit>
+        </Scenario>
+      </ScenarioData>
+      <PlayerData>
+        <Player PlayerID="Noob">
+          <Rating>5.5</Rating>
+          <PlayCount>100</PlayCount>
+          <KFactor>0.0075</KFactor>
+          <Uncertainty>0.01</Uncertainty>
+          <LastPlayed>2012-12-31T11:59:59</LastPlayed>
+        </Player>
+      </PlayerData>
+    </Game>
+    
+    <Game GameID="TileZeroSimul">
+      <ScenarioData>
+        <Scenario ScenarioID="Very Easy AI">
+          <Rating>-0.4206019</Rating>
+          <PlayCount>759</PlayCount>
+          <KFactor>0.0075</KFactor>
+          <Uncertainty>1.0</Uncertainty>
+          <LastPlayed>2012-12-31T11:59:59</LastPlayed>
+          <TimeLimit>900000</TimeLimit>
+        </Scenario>
+        <Scenario ScenarioID="Easy AI">
+          <Rating>0.2061859</Rating>
+          <PlayCount>717</PlayCount>
+          <KFactor>0.0075</KFactor>
+          <Uncertainty>1.0</Uncertainty>
+          <LastPlayed>2012-12-31T11:59:59</LastPlayed>
+          <TimeLimit>900000</TimeLimit>
+        </Scenario>
+        <Scenario ScenarioID="Medium Color AI">
+          <Rating>1.617899</Rating>
+          <PlayCount>150</PlayCount>
+          <KFactor>0.0075</KFactor>
+          <Uncertainty>1.0</Uncertainty>
+          <LastPlayed>2012-12-31T11:59:59</LastPlayed>
+          <TimeLimit>900000</TimeLimit>
+        </Scenario>
+        <Scenario ScenarioID="Medium Shape AI">
+          <Rating>1.624226</Rating>
+          <PlayCount>146</PlayCount>
+          <KFactor>0.0075</KFactor>
+          <Uncertainty>1.0</Uncertainty>
+          <LastPlayed>2012-12-31T11:59:59</LastPlayed>
+          <TimeLimit>900000</TimeLimit>
+        </Scenario>
+        <Scenario ScenarioID="Hard AI">
+          <Rating>1.557567</Rating>
+          <PlayCount>154</PlayCount>
+          <KFactor>0.0075</KFactor>
+          <Uncertainty>1.0</Uncertainty>
+          <LastPlayed>2012-12-31T11:59:59</LastPlayed>
+          <TimeLimit>900000</TimeLimit>
+        </Scenario>
+        <Scenario ScenarioID="Very Hard AI">
+          <Rating>1.857451</Rating>
+          <PlayCount>74</PlayCount>
+          <KFactor>0.0075</KFactor>
+          <Uncertainty>1.0</Uncertainty>
+          <LastPlayed>2012-12-31T11:59:59</LastPlayed>
+          <TimeLimit>900000</TimeLimit>
+        </Scenario>
+      </ScenarioData>
+      <PlayerData>
+        <Player PlayerID="EvolvingAI">
+          <Rating>2.100334</Rating>
+          <PlayCount>74</PlayCount>
+          <KFactor>0.0075</KFactor>
+          <Uncertainty>1.0</Uncertainty>
+          <LastPlayed>2012-12-31T11:59:59</LastPlayed>			
+        </Player>
+      </PlayerData>
+    </Game>
+  </Adaptation>
+</AdaptationData>

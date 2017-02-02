@@ -1,0 +1,2522 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>TwoA</name>
+    </assembly>
+    <members>
+        <member name="T:TwoA.AdaptationData">
+            <summary>
+            The AdaptationData node.
+            </summary>
+        </member>
+        <member name="F:TwoA.AdaptationData.AdaptationList">
+            <summary>
+            A list of Adaptation nodes.
+            </summary>
+        </member>
+        <member name="T:TwoA.AdaptationNode">
+            <summary>
+            The Adaptation node.
+            </summary>
+        </member>
+        <member name="F:TwoA.AdaptationNode.GameList">
+            <summary>
+            A list of Game nodes.
+            </summary>
+        </member>
+        <member name="P:TwoA.AdaptationNode.AdaptationID">
+            <summary>
+            Identifier for the Adaptation node.
+            </summary>
+        </member>
+        <member name="T:TwoA.GameNode">
+            <summary>
+            The Game node
+            </summary>
+        </member>
+        <member name="F:TwoA.GameNode.ScenarioData">
+            <summary>
+            The ScenarioData node.
+            </summary>
+        </member>
+        <member name="F:TwoA.GameNode.PlayerData">
+            <summary>
+            The PlayerData node.
+            </summary>
+        </member>
+        <member name="P:TwoA.GameNode.GameID">
+            <summary>
+            Identifier for the Game node.
+            </summary>
+        </member>
+        <member name="T:TwoA.ScenarioDataNode">
+            <summary>
+            The ScenarioData node
+            </summary>
+        </member>
+        <member name="F:TwoA.ScenarioDataNode.ScenarioList">
+            <summary>
+            A list of Scenario nodes
+            </summary>
+        </member>
+        <member name="T:TwoA.ScenarioNode">
+            <summary>
+            The Scenario node
+            </summary>
+        </member>
+        <member name="P:TwoA.ScenarioNode.ScenarioID">
+            <summary>
+            Identifier for the Scenario node.
+            </summary>
+        </member>
+        <member name="P:TwoA.ScenarioNode.Rating">
+            <summary>
+            Scenario rating
+            </summary>
+        </member>
+        <member name="P:TwoA.ScenarioNode.PlayCount">
+            <summary>
+            Number of times the scenario was played.
+            </summary>
+        </member>
+        <member name="P:TwoA.ScenarioNode.KFactor">
+            <summary>
+            Scenario's K factor.
+            </summary>
+        </member>
+        <member name="P:TwoA.ScenarioNode.Uncertainty">
+            <summary>
+            Uncertainty in scenario's rating.
+            </summary>
+        </member>
+        <member name="P:TwoA.ScenarioNode.LastPlayed">
+            <summary>
+            Last time the scenario was played.
+            </summary>
+        </member>
+        <member name="P:TwoA.ScenarioNode.TimeLimit">
+            <summary>
+            Time limit for completing the scenario.
+            </summary>
+        </member>
+        <member name="T:TwoA.PlayerDataNode">
+            <summary>
+            The PlayerData node
+            </summary>
+        </member>
+        <member name="F:TwoA.PlayerDataNode.PlayerList">
+            <summary>
+            A list of Player nodes
+            </summary>
+        </member>
+        <member name="T:TwoA.PlayerNode">
+            <summary>
+            The Scenario node
+            </summary>
+        </member>
+        <member name="P:TwoA.PlayerNode.PlayerID">
+            <summary>
+            Identifier for the Player node.
+            </summary>
+        </member>
+        <member name="P:TwoA.PlayerNode.Rating">
+            <summary>
+            Player rating
+            </summary>
+        </member>
+        <member name="P:TwoA.PlayerNode.PlayCount">
+            <summary>
+            Number of times the player played any scenario.
+            </summary>
+        </member>
+        <member name="P:TwoA.PlayerNode.KFactor">
+            <summary>
+            Player's K factor.
+            </summary>
+        </member>
+        <member name="P:TwoA.PlayerNode.Uncertainty">
+            <summary>
+            Uncertainty in player's rating.
+            </summary>
+        </member>
+        <member name="P:TwoA.PlayerNode.LastPlayed">
+            <summary>
+            Last time the player played.
+            </summary>
+        </member>
+        <member name="M:TwoA.DifficultyAdapter.setDefaultTargetDistribution">
+            <summary>
+            Sets target distribution parameters to their default values.
+            </summary>
+        </member>
+        <member name="M:TwoA.DifficultyAdapter.setTargetDistribution(System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            Sets target distribution parameters to custom values.
+            </summary>
+            
+            <param name="tDistrMean">   Dstribution mean</param>
+            <param name="tDistrSD">     Distribution standard deviation</param>
+            <param name="tLowerLimit">  Distribution lower limit</param>
+            <param name="tUpperLimit">  Distribution upper limit</param>
+        </member>
+        <member name="M:TwoA.DifficultyAdapter.#ctor(TwoA.TwoA)">
+             <summary>
+             Initializes a new instance of the TwoA.DifficultyAdapter class.
+             
+             Assign default values if max play frequency and max non-play delay values
+             are not provided.
+             
+             Add a reference to the TwoA asset so we can use it.
+             </summary>
+            
+             <remarks>
+             Alternative for the asset parameter would be to ask the AssetManager for
+             a reference.
+             </remarks>
+            
+             <param name="asset"> The asset. </param>
+        </member>
+        <member name="M:TwoA.DifficultyAdapter.UpdateRatings(System.String,System.String,System.String,System.Double,System.Double,System.Boolean)">
+             <summary>
+             Updates the ratings.
+             </summary>
+            
+             <param name="gameID">               Identifier for the game. </param>
+             <param name="playerID">             Identifier for the player. </param>
+             <param name="scenarioID">           Identifier for the scenario. </param>
+             <param name="rt">                   The right. </param>
+             <param name="correctAnswer">        The correct answer. </param>
+             <param name="updateDatafiles">      Set to true to update adaptation and gameplay logs files. </param>
+        </member>
+        <member name="M:TwoA.DifficultyAdapter.TargetScenarioID(System.String,System.String)">
+             <summary>
+             Calculates expected beta for target scenario. Returns ID of a scenario with beta closest to the target beta.
+             If two more scenarios match then scenario that was least played is chosen.  
+             </summary>
+            
+             <param name="gameID">   Identifier for the game. </param>
+             <param name="playerID"> Identifier for the player. </param>
+            
+             <returns>
+             A string.
+             </returns>
+        </member>
+        <member name="M:TwoA.DifficultyAdapter.calcTargetBetas(System.Double)">
+             <summary>
+             Calculates a fuzzy interval for a target beta.
+             </summary>
+            
+             <param name="theta"> The theta. </param>
+            
+             <returns>
+             A four-element array of ratings (in an ascending order) representing lower and upper bounds of the support and core
+             </returns>
+        </member>
+        <member name="M:TwoA.DifficultyAdapter.TargetScenarioIDOld(System.String,System.String,System.Boolean)">
+             <summary>
+             THIS METHOD IS DEPRECIATED; DO NOT USE IT. FOR RESEARCH USE ONLY.
+             Calculates expected beta for target scenario. Returns ID of a scenario with beta closest to the target beta.
+             If two more scenarios match then scenario that was least played is chosen.
+             </summary>
+            
+             <returns>
+             A string.
+             </returns>
+        </member>
+        <member name="M:TwoA.DifficultyAdapter.calcTargetBetaOld(System.Double)">
+            <summary>
+            THIS METHOD IS DEPRECIATED; DO NOT USE IT. FOR RESEARCH USE ONLY.
+            </summary>
+        </member>
+        <member name="M:TwoA.DifficultyAdapter.calcTargetBetaNew(System.Double)">
+            <summary>
+            THIS METHOD IS DEPRECIATED; DO NOT USE IT. FOR RESEARCH USE ONLY.
+            </summary>
+        </member>
+        <member name="M:TwoA.DifficultyAdapter.calcActualScore(System.Double,System.Double,System.Double)">
+             <summary>
+             Calculates actual score given success/failure outcome and response time.
+             </summary>
+            
+             <param name="correctAnswer">   should be either 0, for failure,
+                                                     or 1 for success. </param>
+             <param name="responseTime">    a response time in milliseconds. </param>validateResponseTime
+             <param name="itemMaxDuration">  maximum duration of time given to a
+                                             player to provide an answer. </param>
+            
+             <returns>
+             actual score as a double.
+             </returns>
+        </member>
+        <member name="M:TwoA.DifficultyAdapter.calcExpectedScore(System.Double,System.Double,System.Double)">
+             <summary>
+             Calculates expected score given player's skill rating and item's
+             difficulty rating.
+             </summary>
+            
+             <param name="playerTheta">     player's skill rating. </param>
+             <param name="itemBeta">        item's difficulty rating. </param>
+             <param name="itemMaxDuration">  maximum duration of time given to a
+                                             player to provide an answer. </param>
+            
+             <returns>
+             expected score as a double.
+             </returns>
+        </member>
+        <member name="M:TwoA.DifficultyAdapter.getDiscriminationParam(System.Double)">
+             <summary>
+             Calculates discrimination parameter a_i necessary to calculate expected
+             and actual scores.
+             </summary>
+            
+             <param name="itemMaxDuration">  maximum duration of time given to a
+                                             player to provide an answer; should be
+                                             player. </param>
+            
+             <returns>
+             discrimination parameter a_i as double number.
+             </returns>
+        </member>
+        <member name="M:TwoA.DifficultyAdapter.calcThetaUncertainty(System.Double,System.Double)">
+             <summary>
+             Calculates a new uncertainty for the theta rating.
+             </summary>
+            
+             <param name="currThetaU">       current uncertainty value for theta
+                                             rating. </param>
+             <param name="currDelayCount">   the current number of consecutive days
+                                             the player has not played. </param>
+            
+             <returns>
+             a new uncertainty value for theta rating.
+             </returns>
+        </member>
+        <member name="M:TwoA.DifficultyAdapter.calcBetaUncertainty(System.Double,System.Double)">
+             <summary>
+             Calculates a new uncertainty for the beta rating.
+             </summary>
+            
+             <param name="currBetaU">        current uncertainty value for the beta
+                                             rating. </param>
+             <param name="currDelayCount">   the current number of consecutive days
+                                             the item has not beein played. </param>
+            
+             <returns>
+             a new uncertainty value for the beta rating.
+             </returns>
+        </member>
+        <member name="M:TwoA.DifficultyAdapter.calcThetaKFctr(System.Double,System.Double)">
+             <summary>
+             Calculates a new K factor for theta rating
+             </summary>
+            
+             <param name="currThetaU">   current uncertainty for the theta rating</param>
+             <param name="currBetaU">    current uncertainty for the beta rating</param>
+             
+             <returns>a double value of a new K factor for the theta rating</returns>
+        </member>
+        <member name="M:TwoA.DifficultyAdapter.calcBetaKFctr(System.Double,System.Double)">
+            <summary>
+            Calculates a new K factor for the beta rating
+            </summary>
+            
+            <param name="currThetaU">   current uncertainty fot the theta rating</param>
+            <param name="currBetaU">    current uncertainty for the beta rating</param>
+            
+            <returns>a double value of a new K factor for the beta rating</returns>
+        </member>
+        <member name="M:TwoA.DifficultyAdapter.calcTheta(System.Double,System.Double,System.Double,System.Double)">
+             <summary>
+             Calculates a new theta rating.
+             </summary>
+            
+             <param name="currTheta">   current theta rating. </param>
+             <param name="thetaKFctr">  K factor for the theta rating. </param>
+             <param name="actualScore"> actual performance score. </param>
+             <param name="expectScore"> expected performance score. </param>
+            
+             <returns>
+             a double value for the new theta rating.
+             </returns>
+        </member>
+        <member name="M:TwoA.DifficultyAdapter.calcBeta(System.Double,System.Double,System.Double,System.Double)">
+             <summary>
+             Calculates a new beta rating.
+             </summary>
+            
+             <param name="currBeta">    current beta rating. </param>
+             <param name="betaKFctr">   K factor for the beta rating. </param>
+             <param name="actualScore"> actual performance score. </param>
+             <param name="expectScore"> expected performance score. </param>
+            
+             <returns>
+             a double value for new beta rating.
+             </returns>
+        </member>
+        <member name="M:TwoA.DifficultyAdapter.validateCorrectAnswer(System.Double)">
+            <summary>
+            Tests the validity of the value representing correctness of player's answer.
+            </summary>
+            
+            <param name="correctAnswer"> Player's answer. </param>
+            
+            <returns>True if the value is valid</returns>
+        </member>
+        <member name="M:TwoA.DifficultyAdapter.validateResponseTime(System.Double)">
+            <summary>
+            Tests the validity of the value representing the response time.
+            </summary>
+            
+            <param name="responseTime">Response time in milliseconds</param>
+            
+            <returns>True if the value is valid</returns>
+        </member>
+        <member name="M:TwoA.DifficultyAdapter.validateItemMaxDuration(System.Double)">
+            <summary>
+            Tests the validity of the value representing the max amount of time to respond.
+            </summary>
+            
+            <param name="itemMaxDuration">Time duration in mulliseconds</param>
+            
+            <returns>True if the value is valid</returns>
+        </member>
+        <member name="M:TwoA.DifficultyAdapter.log(System.String)">
+            <summary>
+            Logs a message by default under a Severity.Information type
+            </summary>
+            
+            <param name="msg">      A message to be logged</param>
+        </member>
+        <member name="M:TwoA.DifficultyAdapter.log(AssetPackage.Severity,System.String)">
+            <summary>
+            Logs a message using assets's Log method
+            </summary>
+            
+            <param name="severity"> Message type</param>
+            <param name="msg">      A message to be logged</param>
+        </member>
+        <member name="P:TwoA.DifficultyAdapter.ProvTheta">
+            <summary>
+            Gets the prov theta.
+            </summary>
+        </member>
+        <member name="P:TwoA.DifficultyAdapter.Type">
+            <summary>
+            Gets the type of the adapter
+            </summary>
+        </member>
+        <member name="P:TwoA.DifficultyAdapter.ScoreErrorCode">
+            <summary>
+            Getter for a code indicating error in calculating score. 
+            </summary>
+        </member>
+        <member name="P:TwoA.DifficultyAdapter.TargetDistrMean">
+            <summary>
+            Getter for target distribution mean. See 'setTargetDistribution' method for setting a value.
+            </summary>
+        </member>
+        <member name="P:TwoA.DifficultyAdapter.TargetDistrSD">
+            <summary>
+            Getter for target distribution standard deviation. See 'setTargetDistribution' method for setting a value.
+            </summary>
+        </member>
+        <member name="P:TwoA.DifficultyAdapter.TargetLowerLimit">
+            <summary>
+            Getter for target distribution lower limit. See 'setTargetDistribution' method for setting a value.
+            </summary>
+        </member>
+        <member name="P:TwoA.DifficultyAdapter.TargetUpperLimit">
+            <summary>
+            Getter for target distribution upper limit. See 'setTargetDistribution' method for setting a value.
+            </summary>
+        </member>
+        <member name="P:TwoA.DifficultyAdapter.FiSDMultiplier">
+            <summary>
+            Getter/setter for a weight used to calculate distribution means for a fuzzy selection algorithm.
+            </summary>
+        </member>
+        <member name="P:TwoA.DifficultyAdapter.MaxDelay">
+            <summary>
+            Gets or sets the maximum delay.
+            </summary>
+        </member>
+        <member name="P:TwoA.DifficultyAdapter.MaxPlay">
+            <summary>
+            Gets or sets the maximum play.
+            </summary>
+        </member>
+        <member name="P:TwoA.DifficultyAdapter.ProvU">
+            <summary>
+            Gets or sets the provisional uncertainty.
+            </summary>
+        </member>
+        <member name="P:TwoA.DifficultyAdapter.ProvDate">
+            <summary>
+            Gets the provisional play date.
+            </summary>
+        </member>
+        <member name="P:TwoA.DifficultyAdapter.KConst">
+            <summary>
+            Getter/setter for the K constant.
+            </summary>
+        </member>
+        <member name="P:TwoA.DifficultyAdapter.KUp">
+            <summary>
+            Getter/setter for the upward uncertainty weight.
+            </summary>
+        </member>
+        <member name="P:TwoA.DifficultyAdapter.KDown">
+            <summary>
+            Getter/setter for the downward uncertainty weight.
+            </summary>
+        </member>
+        <member name="T:TwoA.GameplaysData">
+            <summary>
+            The gameplays data.
+            </summary>
+        </member>
+        <member name="F:TwoA.GameplaysData.Adaptation">
+            <summary>
+            The adaptation.
+            </summary>
+        </member>
+        <member name="T:TwoA.TwoAAdaptation">
+            <summary>
+            A TwoA adaptation.
+            </summary>
+        </member>
+        <member name="F:TwoA.TwoAAdaptation.Game">
+            <summary>
+            The game.
+            </summary>
+        </member>
+        <member name="F:TwoA.TwoAAdaptation.AdaptationID">
+            <summary>
+            Identifier for the adaptation.
+            </summary>
+        </member>
+        <member name="T:TwoA.TwoAGame">
+            <summary>
+            A TwoA game.
+            </summary>
+        </member>
+        <member name="F:TwoA.TwoAGame.Gameplay">
+            <summary>
+            The gameplay.
+            </summary>
+        </member>
+        <member name="F:TwoA.TwoAGame.GameID">
+            <summary>
+            Identifier for the game.
+            </summary>
+        </member>
+        <member name="T:TwoA.TwoAGameplay">
+            <summary>
+            A TwoA gameplay.
+            </summary>
+        </member>
+        <member name="F:TwoA.TwoAGameplay.PlayerID">
+            <summary>
+            Identifier for the player.
+            </summary>
+        </member>
+        <member name="F:TwoA.TwoAGameplay.ScenarioID">
+            <summary>
+            Identifier for the scenario.
+            </summary>
+        </member>
+        <member name="F:TwoA.TwoAGameplay.Timestamp">
+            <summary>
+            The timestamp.
+            </summary>
+        </member>
+        <member name="F:TwoA.TwoAGameplay.RT">
+            <summary>
+            The RT.
+            </summary>
+        </member>
+        <member name="F:TwoA.TwoAGameplay.Accuracy">
+            <summary>
+            The accuracy.
+            </summary>
+        </member>
+        <member name="F:TwoA.TwoAGameplay.PlayerRating">
+            <summary>
+            The player rating.
+            </summary>
+        </member>
+        <member name="F:TwoA.TwoAGameplay.ScenarioRating">
+            <summary>
+            The scenario rating.
+            </summary>
+        </member>
+        <member name="T:TwoA.KSRank">
+            <summary>
+            Represents a rank in a knowledge structure
+            </summary>
+        </member>
+        <member name="F:TwoA.KSRank.rankIndex">
+            <summary>
+            Index of the rank in the knowledge structure.
+            </summary>
+        </member>
+        <member name="F:TwoA.KSRank.states">
+            <summary>
+            List of state belonging to this rank.
+            </summary>
+        </member>
+        <member name="M:TwoA.KSRank.#ctor(System.Int32,System.Collections.Generic.List{TwoA.KState})">
+            <summary>
+            Private constructor.
+            </summary>
+            
+            <param name="rankIndex">    Rank index</param>
+            <param name="states">       List of states of this rank</param>
+        </member>
+        <member name="M:TwoA.KSRank.#ctor(System.Int32)">
+            <summary>
+            Constructor initializes with an empty list of states.
+            </summary>
+            
+            <param name="rankIndex">Rank index</param>
+        </member>
+        <member name="M:TwoA.KSRank.#ctor">
+            <summary>
+            Constructor initializes with an assigned rank index and an empty list of states.
+            </summary>
+        </member>
+        <member name="M:TwoA.KSRank.getStateCount">
+            <summary>
+            Returns the number of states in the rank.
+            </summary>
+            
+            <returns>state count</returns>
+        </member>
+        <member name="M:TwoA.KSRank.addState(TwoA.KState)">
+            <summary>
+            Add a specified to this rank.
+            </summary>
+            
+            <param name="state">KState object to add to the rank</param>
+            
+            <returns>True if the state was added successfully</returns>
+        </member>
+        <member name="M:TwoA.KSRank.removeState(TwoA.KState)">
+            <summary>
+            Removes the specified state from this rank.
+            </summary>
+            
+            <param name="state">KState object to remove</param>
+            
+            <returns>True if the state was removed successfully</returns>
+        </member>
+        <member name="M:TwoA.KSRank.removeStateAt(System.Int32)">
+            <summary>
+            Removes a state at the specified index of the list.
+            </summary>
+            
+            <param name="index">List index</param>
+            
+            <returns>True if a state was removed successfully</returns>
+        </member>
+        <member name="M:TwoA.KSRank.getStateAt(System.Int32)">
+            <summary>
+            Retrieve state at the specified list index.
+            </summary>
+            
+            <param name="index">List index</param>
+            
+            <returns>KState object, or null if index is out of range</returns>
+        </member>
+        <member name="M:TwoA.KSRank.getStates">
+            <summary>
+            Retrieve the list of all states
+            </summary>
+            
+            <returns>List of KState objects</returns>
+        </member>
+        <member name="P:TwoA.KSRank.RankIndex">
+            <summary>
+            Getter/setter for the index of the rank in the knowledge structure.
+            </summary>
+        </member>
+        <member name="T:TwoA.KState">
+            <summary>
+            Represents a knowledge state
+            </summary>
+        </member>
+        <member name="F:TwoA.KState.stateType">
+            <summary>
+            Type of knowledge state (can be root, core or expanded).
+            </summary>
+        </member>
+        <member name="F:TwoA.KState.categories">
+            <summary>
+            A list of categories that comprise the knowledge state
+            </summary>
+        </member>
+        <member name="F:TwoA.KState.prevStates">
+            <summary>
+            A list of all states that are prerequisite for this state
+            </summary>
+        </member>
+        <member name="F:TwoA.KState.nextStates">
+            <summary>
+            A list of all states this state is prerequisite for
+            </summary>
+        </member>
+        <member name="M:TwoA.KState.#ctor(System.String,System.String,System.Collections.Generic.List{TwoA.PCategory})">
+            <summary>
+            Private constructor
+            </summary>
+            
+            <param name="id">           A unique ID for the state</param>
+            <param name="stateType">    Type of the state</param>
+            <param name="categories">   A list of ategories that comprise the state</param>
+        </member>
+        <member name="M:TwoA.KState.#ctor(System.String)">
+            <summary>
+            Constructor initializes with null ID and an empty list of categories
+            </summary>
+            
+            <param name="stateType">Type of the state</param>
+        </member>
+        <member name="M:TwoA.KState.#ctor(System.String,System.String)">
+            <summary>
+            Constructor initializes with an empty list of categories
+            </summary>
+            
+            <param name="id">           A unique ID for the state</param>
+            <param name="stateType">    Type of the state</param>
+        </member>
+        <member name="M:TwoA.KState.#ctor">
+            <summary>
+            Constructor initializes with core state type as default, null ID and an empty list of categories 
+            </summary>
+        </member>
+        <member name="M:TwoA.KState.hasId">
+            <summary>
+            Returns true if the Id property was assigned a valid value.
+            </summary>
+            
+            <returns>boolean</returns>
+        </member>
+        <member name="M:TwoA.KState.isSameId(System.String)">
+            <summary>
+            returns true if the state's Id is same as the specified Id
+            </summary>
+            
+            <param name="id">ID to compare to</param>
+            
+            <returns>boolean</returns>
+        </member>
+        <member name="M:TwoA.KState.isSameId(TwoA.KState)">
+            <summary>
+            returns true if this state has the same Id as the state passed as a parameter.
+            </summary>
+            
+            <param name="state">another state to compare to</param>
+            
+            <returns>boolean</returns>
+        </member>
+        <member name="M:TwoA.KState.getPrevStateCount">
+            <summary>
+            Returns the number of prerequisite states.
+            </summary>
+            
+            <returns>state count</returns>
+        </member>
+        <member name="M:TwoA.KState.addPrevState(TwoA.KState)">
+            <summary>
+            Adds a specified prerequisite state.
+            </summary>
+            
+            <param name="prevState">The state to be added to the list of prerequisite states</param>
+        </member>
+        <member name="M:TwoA.KState.removePrevState(TwoA.KState)">
+            <summary>
+            Removes the specified prerequisite state.
+            </summary>
+            
+            <param name="prevState">A state to be removed from the list of prerequisite states</param>
+            
+            <returns>True if the state was removed successfully.</returns>
+        </member>
+        <member name="M:TwoA.KState.removePrevStateAt(System.Int32)">
+            <summary>
+            Removes the prerequisite state at the specified list index.
+            </summary>
+            
+            <param name="index">List index</param>
+            
+            <returns>True if the state was removed successfully</returns>
+        </member>
+        <member name="M:TwoA.KState.getPrevStates">
+            <summary>
+            Retrieve the list of all prerequisite states.
+            </summary>
+            
+            <returns>A list of KState objects</returns>
+        </member>
+        <member name="M:TwoA.KState.getPrevStateAt(System.Int32)">
+            <summary>
+            Retrieves a prerequisite state at specified list index.
+            </summary>
+            
+            <param name="index">List index</param>
+            
+            <returns>KState object, or null if index is out of range</returns>
+        </member>
+        <member name="M:TwoA.KState.getNextStateCount">
+            <summary>
+            Returns the number of succeeding states.
+            </summary>
+            
+            <returns>integer</returns>
+        </member>
+        <member name="M:TwoA.KState.addNextState(TwoA.KState)">
+            <summary>
+            Adds a specified state to the list of succeeding states.
+            </summary>
+            
+            <param name="nextState">State to be added to the list of succeeding states</param>
+        </member>
+        <member name="M:TwoA.KState.removeNextState(TwoA.KState)">
+            <summary>
+            Removes the specified state from the list of succeeding states.
+            </summary>
+            
+            <param name="nextState">State to remove</param>
+            
+            <returns>True if the state was removed successfully</returns>
+        </member>
+        <member name="M:TwoA.KState.removeNextStateAt(System.Int32)">
+            <summary>
+            Removes a state at specified index in the list of succeeding states.
+            </summary>
+            
+            <param name="index">List index</param>
+            
+            <returns>True if the state was removed successfully</returns>
+        </member>
+        <member name="M:TwoA.KState.getNextStates">
+            <summary>
+            Retrieve the list of all states succeding this state.
+            </summary>
+            
+            <returns>A list of KState objects</returns>
+        </member>
+        <member name="M:TwoA.KState.getNextStateAt(System.Int32)">
+            <summary>
+            Retrieve a succeeding state at the specified list index.
+            </summary>
+            
+            <param name="index">List index</param>
+            
+            <returns>KState object, or null if index is out of range</returns>
+        </member>
+        <member name="M:TwoA.KState.getCategoryCount">
+            <summary>
+            Get the number of categories in the knowledge state.
+            </summary>
+            
+            <returns>state count</returns>
+        </member>
+        <member name="M:TwoA.KState.addCategory(TwoA.PCategory)">
+            <summary>
+            Add a new category to the knowledge state.
+            </summary>
+            
+            <param name="newCategory">PCategory objectt</param>
+            
+            <returns>true if category was added; false if a category with the same ID already exists in the list</returns>
+        </member>
+        <member name="M:TwoA.KState.removeCategory(TwoA.PCategory)">
+            <summary>
+            Remove a give category object.
+            </summary>
+            
+            <param name="category">category object</param>
+            
+            <returns>true if the category was removed</returns>
+        </member>
+        <member name="M:TwoA.KState.removeCategory(System.String)">
+            <summary>
+            Remove category by its ID.
+            </summary>
+            
+            <param name="id">category ID</param>
+            
+            <returns>true if a category was removed</returns>
+        </member>
+        <member name="M:TwoA.KState.removeCategoryAt(System.Int32)">
+            <summary>
+            Remove category by its list index.
+            </summary>
+            
+            <param name="index">index in a list</param>
+            
+            <returns>true if a category was removed</returns>
+        </member>
+        <member name="M:TwoA.KState.getCategories">
+            <summary>
+            Get the list of all categories in the knowledge state.
+            </summary>
+            
+            <returns>List of PCategory objects</returns>
+        </member>
+        <member name="M:TwoA.KState.getCategoryAt(System.Int32)">
+            <summary>
+            Get a category by its list index.
+            </summary>
+            
+            <param name="index">index in a list</param>
+            
+            <returns>PCategory object, or null if index is out of range</returns>
+        </member>
+        <member name="M:TwoA.KState.getCategory(System.String)">
+            <summary>
+            Get a category by it ID.
+            </summary>
+            
+            <param name="id">category ID</param>
+            
+            <returns>PCategory object or null</returns>
+        </member>
+        <member name="M:TwoA.KState.ToString">
+            <summary>
+            Returns a string representation of this state.
+            </summary>
+            
+            <returns>string</returns>
+        </member>
+        <member name="M:TwoA.KState.isSubsetOf(TwoA.KState)">
+            <summary>
+            Returns true if the state is subset of a state specified as parameter
+            </summary>
+            
+            <param name="state">KState object</param>
+            
+            <returns>boolean</returns>
+        </member>
+        <member name="P:TwoA.KState.Id">
+            <summary>
+            ID for the state
+            </summary>
+        </member>
+        <member name="P:TwoA.KState.StateType">
+            <summary>
+            Getter/setter for the stateType field
+            </summary>
+        </member>
+        <member name="T:TwoA.KStructure">
+            <summary>
+            Represents a knowledge structure
+            </summary>
+        </member>
+        <member name="F:TwoA.KStructure.ranks">
+            <summary>
+            The list of ranks in the knowledge structure
+            </summary>
+        </member>
+        <member name="M:TwoA.KStructure.#ctor(TwoA.RankOrder)">
+            <summary>
+            Constructor initializes an empty list of knowledge structure ranks.
+            </summary>
+            
+            <param name="rankOrder">RankOrder object that is used to construct the knowledge structure</param>
+        </member>
+        <member name="M:TwoA.KStructure.#ctor">
+            <summary>
+            Constructor initializes an empty list of knowledge structure ranks and initializes the rankOrder property with null.
+            </summary>
+        </member>
+        <member name="M:TwoA.KStructure.hasRankOrder">
+            <summary>
+            Returns true if there is a rankOrder with at least one rank.
+            </summary>
+            
+            <returns>boolean</returns>
+        </member>
+        <member name="M:TwoA.KStructure.hasRanks">
+            <summary>
+            Returns true if the knowledge structure has at least one rank
+            </summary>
+            
+            <returns>boolean</returns>
+        </member>
+        <member name="M:TwoA.KStructure.getRankCount">
+            <summary>
+            Returns the number of ranks in the knowledge structure.
+            </summary>
+            
+            <returns>number of ranks</returns>
+        </member>
+        <member name="M:TwoA.KStructure.addRank(TwoA.KSRank)">
+            <summary>
+            Adds a specified rank into the knowledge structure. Afterwards, ranks are sorted by ascending order of rank indices.
+            </summary>
+            
+            <param name="rank">KSRank object to add into the knowledge structure</param>
+        </member>
+        <member name="M:TwoA.KStructure.addRank(TwoA.KSRank,System.Boolean)">
+            <summary>
+            Adds a specified rank into the knowledge structure.
+            </summary>
+            
+            <param name="rank">     KSRank object to add into the knowledge structure</param>
+            <param name="sortFlag"> If true, ranks are sorted by ascending order of rank indices after the new rank is added.</param>
+        </member>
+        <member name="M:TwoA.KStructure.removeRank(TwoA.KSRank)">
+            <summary>
+            Removes the specified rank from the knowledge structure. Afterwards, ranks are sorted by ascending order of rank indices.
+            </summary>
+            
+            <param name="rank">KSRank object to be removed from the knowledge structure.</param>
+            
+            <returns>True if the rank was removed successfully.</returns>
+        </member>
+        <member name="M:TwoA.KStructure.removeRank(TwoA.KSRank,System.Boolean)">
+            <summary>
+            Removes the specified rank from the knowledge structure.
+            </summary>
+            
+            <param name="rank">     KSRank object to be removed from the knowledge structure.</param>
+            <param name="sortFlag"> If true, ranks are sorted by ascending order of rank indices after the new rank is removed</param>
+            
+            <returns>True if the rank was removed successfully.</returns>
+        </member>
+        <member name="M:TwoA.KStructure.removeRankAt(System.Int32)">
+            <summary>
+            Removes a rank at the specified list index. Note that rank's list index is not necessarily same as the rank's index in a knowledge structure.
+            Afterwards, remaining rank are sorted by ascending order of rank indices.
+            </summary>
+            
+            <param name="index">List index of a rank to be removed.</param>
+            
+            <returns>True if the rank was removed successfully</returns>
+        </member>
+        <member name="M:TwoA.KStructure.removeRankAt(System.Int32,System.Boolean)">
+            <summary>
+            /// Removes a rank at the specified list index. Note that rank's list index is not necessarily same as the rank's index in a knowledge structure.
+            </summary>
+            
+            <param name="index">    List index of a rank to be removed.</param>
+            <param name="sortFlag"> If true, ranks are sorted by ascending order of rank indices after the new rank is removed.</param>
+            
+            <returns>True if the rank was removed successfully</returns>
+        </member>
+        <member name="M:TwoA.KStructure.getRankAt(System.Int32)">
+            <summary>
+            Retrieve KSRank object at specified list index.
+            </summary>
+            
+            <param name="index">List index</param>
+            
+            <returns>KSRank object, or null if index is out of range.</returns>
+        </member>
+        <member name="M:TwoA.KStructure.getRanks">
+            <summary>
+            Returns the list of all ranks in the knowledge structure.
+            </summary>
+            
+            <returns>List of KSRank objects</returns>
+        </member>
+        <member name="M:TwoA.KStructure.sortAscending">
+            <summary>
+            Sorts ranks in the knowledge structure by ascending order of rank indices.
+            </summary>
+        </member>
+        <member name="P:TwoA.KStructure.rankOrder">
+            <summary>
+            A rank order from which the knowledge structure is constructed.
+            </summary>
+        </member>
+        <member name="T:TwoA.PCategory">
+            <summary>
+            Represents a category of problems of the same structure and difficulty
+            </summary>
+        </member>
+        <member name="M:TwoA.PCategory.#ctor(System.String,System.Double)">
+            <summary>
+            Initializes a new instance of the TwoA.KS.PCategory class.
+            </summary>
+            
+            <param name="id">       A unique identifier for the problem category. </param>
+            <param name="rating">   Rating of the problem category. </param>
+        </member>
+        <member name="M:TwoA.PCategory.#ctor">
+            <summary>
+            Initializes a new instance of the TwoA.KS.PCategory class.
+            </summary>
+        </member>
+        <member name="M:TwoA.PCategory.hasId">
+            <summary>
+            Returns true if the Id property was assigned a valid value.
+            </summary>
+            
+            <returns> boolean value </returns>
+        </member>
+        <member name="M:TwoA.PCategory.hasRating">
+            <summary>
+            Returns true if the Rating property was assigned a numerical value.
+            </summary>
+            
+            <returns> boolean value </returns>
+        </member>
+        <member name="M:TwoA.PCategory.isSameId(System.String)">
+            <summary>
+            returns true if the category's Id is same as the specified Id
+            </summary>
+            
+            <param name="id">ID to compare to</param>
+            
+            <returns>a boolean value</returns>
+        </member>
+        <member name="M:TwoA.PCategory.isSameId(TwoA.PCategory)">
+            <summary>
+            returns true if this category has the same Id as the category passed as a parameter
+            </summary>
+            
+            <param name="category">another category to compare to</param>
+            
+            <returns>a boolean value</returns>
+        </member>
+        <member name="P:TwoA.PCategory.Id">
+            <summary>
+            A unique identifier for the problem category.
+            </summary>
+        </member>
+        <member name="P:TwoA.PCategory.Rating">
+            <summary>
+            Rating of the problem category.
+            </summary>
+        </member>
+        <member name="T:TwoA.Rank">
+            <summary>
+            Represents a rank in a rank order
+            </summary>
+        </member>
+        <member name="F:TwoA.Rank.rankIndex">
+            <summary>
+            Rank index indicating rank's position in a rank order.
+            </summary>
+        </member>
+        <member name="F:TwoA.Rank.categories">
+            <summary>
+            List of categories that were assigned this rank.
+            </summary>
+        </member>
+        <member name="M:TwoA.Rank.#ctor(System.Int32,System.Collections.Generic.List{TwoA.PCategory})">
+            <summary>
+            Constructor
+            </summary>
+            
+            <param name="rankIndex">    Rank index</param>
+            <param name="categories">   List of categories assigned to this rank</param>
+        </member>
+        <member name="M:TwoA.Rank.#ctor(System.Int32)">
+            <summary>
+            Constructor automatically creates an empty list of categories.
+            </summary>
+            
+            <param name="rankIndex">Rank index</param>
+        </member>
+        <member name="M:TwoA.Rank.#ctor">
+            <summary>
+            Constructor automatically creates an empty list of categories and initializes the rankIndex with unassigned indicator.
+            </summary>
+        </member>
+        <member name="M:TwoA.Rank.getCategoryCount">
+            <summary>
+            Returns the number of categories in the rank.
+            </summary>
+            
+            <returns>Number of categories</returns>
+        </member>
+        <member name="M:TwoA.Rank.addCategory(TwoA.PCategory)">
+            <summary>
+            Adds the specified category into the rank.
+            </summary>
+            
+            <param name="category">PCategory object to add to the rank</param>
+        </member>
+        <member name="M:TwoA.Rank.removeCategory(TwoA.PCategory)">
+            <summary>
+            Removes the specified PCategory object from the rank.
+            </summary>
+            
+            <param name="category">PCategory object to remove.</param>
+            
+            <returns>True if the category was removed successfully.</returns>
+        </member>
+        <member name="M:TwoA.Rank.removeCategory(System.String)">
+            <summary>
+            Removes from the rank the category with specified ID.
+            </summary>
+            
+            <param name="id">ID of the category to remove</param>
+            
+            <returns>True if the category was removed successfully.</returns>
+        </member>
+        <member name="M:TwoA.Rank.removeCategoryAt(System.Int32)">
+            <summary>
+            Removes the category at specified list index.
+            </summary>
+            
+            <param name="index">List index</param>
+            
+            <returns>True if a category was removed successfully.</returns>
+        </member>
+        <member name="M:TwoA.Rank.getCategoryAt(System.Int32)">
+            <summary>
+            
+            </summary>
+            
+            <param name="index"></param>
+            
+            <returns></returns>
+        </member>
+        <member name="M:TwoA.Rank.getCategories">
+            <summary>
+            Returns the list of all categories in the rank.
+            </summary>
+            
+            <returns>List of categories</returns>
+        </member>
+        <member name="M:TwoA.Rank.getCategory(System.String)">
+            <summary>
+            Retrieve category with specified ID.
+            </summary>
+            
+            <param name="id">Category ID</param>
+            
+            <returns>PCategory object</returns>
+        </member>
+        <member name="M:TwoA.Rank.getSubsets">
+            <summary>
+            A function that finds all unique subsets categories in the rank.
+            </summary>
+            
+            <returns>List of lists of categories</returns>
+        </member>
+        <member name="M:TwoA.Rank.getSubsets(System.Collections.Generic.List{TwoA.PCategory},System.Collections.Generic.List{TwoA.PCategory},System.Collections.Generic.List{System.Collections.Generic.List{TwoA.PCategory}})">
+            <summary>
+            A recursive function that finds all unique subsets (2^|List|) from a given sourceList.
+            </summary>
+            
+            <param name="baseList">     Initially an empty list.</param>
+            <param name="sourceList">   Initially a list of all items to divided into subsets.</param>
+            <param name="subsets">      Contains all identified subsets.</param>
+        </member>
+        <member name="P:TwoA.Rank.RankIndex">
+            <summary>
+            Getter/setter for rankIndex field.
+            </summary>
+        </member>
+        <member name="T:TwoA.RankOrder">
+            <summary>
+            Represents a rank order from which a knowledge structure can be constructed
+            </summary>
+        </member>
+        <member name="F:TwoA.RankOrder.ranks">
+            <summary>
+            A list of ranks in this rank order.
+            </summary>
+        </member>
+        <member name="F:TwoA.RankOrder.threshold">
+            <summary>
+            The value of the threshold used to create the ranked order.
+            </summary>
+        </member>
+        <member name="M:TwoA.RankOrder.#ctor(System.Double)">
+            <summary>
+            Constructor
+            </summary>
+            
+            <param name="threshold">threshold used to construct this rank order</param>
+        </member>
+        <member name="M:TwoA.RankOrder.#ctor">
+            <summary>
+            Constructor sets the threshold to a value indicating no assignment.
+            </summary>
+        </member>
+        <member name="M:TwoA.RankOrder.hasThreshold">
+            <summary>
+            Returns true if threshold was explicitly set to a value.
+            </summary>
+            
+            <returns>boolean</returns>
+        </member>
+        <member name="M:TwoA.RankOrder.getRankCount">
+            <summary>
+            Returns the number of ranks in the rank order.
+            </summary>
+            
+            <returns>interger value</returns>
+        </member>
+        <member name="M:TwoA.RankOrder.addRank(TwoA.Rank)">
+            <summary>
+            Adds a new rank to the rank order. Afterwards, ranks are sorted by indices in an ascending order.
+            </summary>
+            
+            <param name="rank">Rank object to be added to the rank order</param>
+        </member>
+        <member name="M:TwoA.RankOrder.addRank(TwoA.Rank,System.Boolean)">
+            <summary>
+            Adds a new rank to the rank order.
+            </summary>
+            
+            <param name="rank">     Rank object to be added to the rank order.</param>
+            <param name="sortFlag"> If set to true then ranks are sorted by indices in a ascending order after the new rank was added.</param>
+        </member>
+        <member name="M:TwoA.RankOrder.removeRank(TwoA.Rank)">
+            <summary>
+            Remove a given rank object from the rank order. Afterwards, ranks are sorted by indices in an ascending order.
+            </summary>
+            
+            <param name="rank">Rank object to be removed.</param>
+            
+            <returns>True if Rank object was removed successfully.</returns>
+        </member>
+        <member name="M:TwoA.RankOrder.removeRank(TwoA.Rank,System.Boolean)">
+            <summary>
+            Remove a given rank object from the rank order.
+            </summary>
+            
+            <param name="rank">     Rank object to be removed.</param>
+            <param name="sortFlag"> If set to true then ranks are sorted by indices in a ascending order after the new rank was removed.</param>
+            
+            <returns>True if Rank object was removed successfully.</returns>
+        </member>
+        <member name="M:TwoA.RankOrder.removeRankAt(System.Int32)">
+            <summary>
+            Removes a rank with a specified list index. Note that rank's list index is not necessarily same as the rank's index in rank order.
+            Afterwards, remaining ranks are sorted by indices in an ascending order.
+            </summary>
+            
+            <param name="index">List index of a rank to be removed.</param>
+            
+            <returns>True if a rank was successfully removed.</returns>
+        </member>
+        <member name="M:TwoA.RankOrder.removeRankAt(System.Int32,System.Boolean)">
+            <summary>
+            Removes a rank with a specified list index. Note that rank's list index is not necessarily same as the rank's index in rank order.
+            </summary>
+            
+            <param name="index">    List index of a rank to be removed.</param>
+            <param name="sortFlag"> If set to true then ranks are sorted by indices in a ascending order after the new rank was removed.</param>
+            
+            <returns>True if a rank was successfully removed.</returns>
+        </member>
+        <member name="M:TwoA.RankOrder.getRankAt(System.Int32)">
+            <summary>
+            Retrieve Rank object at specified position in a list (list index).
+            </summary>
+            
+            <param name="index">List index</param>
+            
+            <returns>Rank object, or null if index is out of range.</returns>
+        </member>
+        <member name="M:TwoA.RankOrder.getRanks">
+            <summary>
+            Retrieve the list of all ranks in the rank order.
+            </summary>
+            
+            <returns>List of all rank objects.</returns>
+        </member>
+        <member name="M:TwoA.RankOrder.sortAscending">
+            <summary>
+            Sorts ranks by rank indices in an ascending order.
+            </summary>
+        </member>
+        <member name="P:TwoA.RankOrder.Threshold">
+            <summary>
+            Getter/setter for the threshold field.
+            </summary>
+        </member>
+        <member name="T:TwoA.XMLFactory">
+            <summary>
+            A sealed class to prevent inheritance.
+            </summary>
+        </member>
+        <member name="F:TwoA.XMLFactory.instance">
+            <summary>
+            A thread-safe singleton instance.
+            </summary>
+        </member>
+        <member name="F:TwoA.XMLFactory.twoa">
+            <summary>
+            Default namespace
+            </summary>
+        </member>
+        <member name="F:TwoA.XMLFactory.xsd">
+            <summary>
+            Standard XSD namespace to be used with 'id' and 'idref' attributes
+            </summary>
+        </member>
+        <member name="F:TwoA.XMLFactory.TWOA_ELEM">
+            <summary>
+            XName for XmlElement("TwoA")
+            </summary>
+        </member>
+        <member name="F:TwoA.XMLFactory.PCATS_ELEM">
+            <summary>
+            XName for XmlElement("PCategories")
+            </summary>
+        </member>
+        <member name="F:TwoA.XMLFactory.PCAT_ELEM">
+            <summary>
+            XName for XmlElement("PCategory")
+            </summary>
+        </member>
+        <member name="F:TwoA.XMLFactory.RATING_ELEM">
+            <summary>
+            XName for XmlElement("Rating")
+            </summary>
+        </member>
+        <member name="F:TwoA.XMLFactory.RANKORDER_ELEM">
+            <summary>
+            XName for XmlElement("RankOrder")
+            </summary>
+        </member>
+        <member name="F:TwoA.XMLFactory.PARAMS_ELEM">
+            <summary>
+            XName for XmlElement("Params")
+            </summary>
+        </member>
+        <member name="F:TwoA.XMLFactory.THRESHOLD_ELEM">
+            <summary>
+            XName for XmlElement(""Threshold"")
+            </summary>
+        </member>
+        <member name="F:TwoA.XMLFactory.RANKS_ELEM">
+            <summary>
+            XName for XmlElement("Ranks")
+            </summary>
+        </member>
+        <member name="F:TwoA.XMLFactory.RANK_ELEM">
+            <summary>
+            XName for XmlElement("Rank")
+            </summary>
+        </member>
+        <member name="F:TwoA.XMLFactory.KSTRUCTURE_ELEM">
+            <summary>
+            XName for XmlElement("KStructure")
+            </summary>
+        </member>
+        <member name="F:TwoA.XMLFactory.KSRANK_ELEM">
+            <summary>
+            XName for XmlElement("KSRank")
+            </summary>
+        </member>
+        <member name="F:TwoA.XMLFactory.KSTATE_ELEM">
+            <summary>
+            XName for XmlElement("KState")
+            </summary>
+        </member>
+        <member name="F:TwoA.XMLFactory.PREV_STATES_ELEM">
+            <summary>
+            XName for XmlElement("PreviousStates")
+            </summary>
+        </member>
+        <member name="F:TwoA.XMLFactory.NEXT_STATES_ELEM">
+            <summary>
+            XName for XmlElement("NextStates")
+            </summary>
+        </member>
+        <member name="F:TwoA.XMLFactory.INDEX_ATTR">
+            <summary>
+            XName for XmlAttribute("Index")
+            </summary>
+        </member>
+        <member name="F:TwoA.XMLFactory.TYPE_ATTR">
+            <summary>
+            XName for XmlAttribute("Type")
+            </summary>
+        </member>
+        <member name="F:TwoA.XMLFactory.ID_ATTR">
+            <summary>
+            XName for XmlAttribute("xsd:id")
+            </summary>
+        </member>
+        <member name="F:TwoA.XMLFactory.IDREF_ATTR">
+            <summary>
+            XName for XmlAttribute("xsd:idref")
+            </summary>
+        </member>
+        <member name="F:TwoA.XMLFactory.XMLNS_ATTR">
+            <summary>
+            XName for XmlAttribute("xmlns")
+            </summary>
+        </member>
+        <member name="F:TwoA.XMLFactory.XSD_ATTR">
+            <summary>
+            XName for XmlAttribute("xmlns:xsd")
+            </summary>
+        </member>
+        <member name="M:TwoA.XMLFactory.#cctor">
+            <summary>
+            Explicit static constructor to tell C# compiler not to mark type as beforefieldinit.
+            </summary>
+        </member>
+        <member name="M:TwoA.XMLFactory.#ctor">
+            <summary>
+            A private constructor to prevent default instantiation.
+            </summary>
+        </member>
+        <member name="M:TwoA.XMLFactory.createXml(TwoA.KStructure)">
+            <summary>
+            creates an XML document object from a given KStructure object
+            </summary>
+            
+            <param name="kStructure">KStructure object with a rank order and knowledge structure</param>
+            
+            <returns>XmlDocument object</returns>
+        </member>
+        <member name="M:TwoA.XMLFactory.createKStructure(System.String)">
+            <summary>
+            Deserializes XML into KStructure object
+            </summary>
+            
+            <param name="xmlString">XML string</param>
+            
+            <returns>KStructure object</returns>
+        </member>
+        <member name="M:TwoA.XMLFactory.createKStructure(System.Xml.Linq.XDocument)">
+            <summary>
+            Deserializes XML into KStructure object
+            </summary>
+            
+            <param name="doc">XDocument instance</param>
+            
+            <returns>KStructure object</returns>
+        </member>
+        <member name="M:TwoA.XMLFactory.SelectNodes(System.Xml.Linq.XElement,System.Xml.Linq.XName[])">
+            <summary>
+            A helper function that emulates xPath-like method for selecting a list of xml child nodes by name
+            </summary>
+            
+            <param name="startNode">    Parent node</param>
+            <param name="nodeNames">    Contains a path to destination child nodes which is the last item in the array</param>
+            
+            <returns>A list of target child nodes, or empty list if child node is not found.</returns>
+        </member>
+        <member name="M:TwoA.XMLFactory.SelectSingleNode(System.Xml.Linq.XElement,System.Xml.Linq.XName[])">
+            <summary>
+            A helper function that emulates xPath-like method for selecting a single xml node by its name
+            </summary>
+            
+            <param name="startNode">    Parent node</param>
+            <param name="nodeNames">    Contains a path to destination child nodes which is the last item in the array</param>
+            
+            <returns>Child node, or null if the node is not found</returns>
+        </member>
+        <member name="M:TwoA.XMLFactory.serialize(System.Xml.Linq.XDocument)">
+            <summary>
+            A helper function that serializes XDocument object into a formatted string.
+            </summary>
+            
+            <param name="doc">XDocument to be serialized</param>
+            
+            <returns>string</returns>
+        </member>
+        <member name="M:TwoA.XMLFactory.Log(AssetPackage.Severity,System.String)">
+            <summary>
+            Sends a log message to the asset
+            </summary>
+            
+            <param name="severity"> Message severity type</param>
+            <param name="logStr">   Log message</param>
+        </member>
+        <member name="P:TwoA.XMLFactory.Instance">
+            <summary>
+            Returns a singleton instance.
+            </summary>
+        </member>
+        <member name="P:TwoA.XMLFactory.asset">
+            <summary>
+            Instance of the TwoA asset
+            </summary>
+        </member>
+        <member name="T:TwoA.TwoA">
+            <summary>
+            A TwoA asset.
+            </summary>
+        </member>
+        <member name="F:TwoA.TwoA.DATE_FORMAT">
+            <summary>
+            Date/time format used in TwoA
+            </summary>
+        </member>
+        <member name="F:TwoA.TwoA.adapter">
+            The adapter.
+        </member>
+        <member name="F:TwoA.TwoA.gameplayLogsFile">
+            <summary>
+            The logfile.
+            </summary>
+        </member>
+        <member name="F:TwoA.TwoA.adaptFile">
+            <summary>
+            The setting file.
+            </summary>
+        </member>
+        <member name="M:TwoA.TwoA.#ctor">
+             <summary>
+             Initializes a new instance of the TwoA.TwoA class.
+             </summary>
+            
+             <remarks>
+             Please use TwoA(IBridge bridge) and a Bridge implementing at least
+             IDataStorage instead as this Asset needs to load data <br/>
+             OR <br/>
+             call the InitSettings() method after creation and configuring a Bridge.
+             </remarks>
+        </member>
+        <member name="M:TwoA.TwoA.#ctor(AssetPackage.IBridge)">
+             <summary>
+             Initializes a new instance of the TwoA.TwoA class.
+             </summary>
+            
+             <param name="bridge"> The bridge. </param>
+        </member>
+        <member name="M:TwoA.TwoA.InitSettings">
+            <summary>
+            Initialises the settings.
+            </summary>
+        </member>
+        <member name="M:TwoA.TwoA.AllScenariosIDs(System.String,System.String)">
+             <summary>
+             Gets a list containing all scenarios IDs.
+             </summary>
+            
+             <param name="adaptID"> Identifier for the adapt. </param>
+             <param name="gameID">  Identifier for the game. </param>
+            
+             <returns>
+             all scenarios.
+             </returns>
+        </member>
+        <member name="M:TwoA.TwoA.TargetScenarioID(System.String,System.String,System.String)">
+             <summary>
+             Get the Target scenario ID from the adapter.
+             </summary>
+            
+             <param name="adaptID">  Identifier for the adapt. </param>
+             <param name="gameID">   Identifier for the game. </param>
+             <param name="playerID"> Identifier for the player. </param>
+            
+             <returns>
+             A string.
+             </returns>
+        </member>
+        <member name="M:TwoA.TwoA.TargetScenarioIDOld(System.String,System.String,System.String,System.Boolean)">
+             <summary>
+             THIS METHOD IS DEPRECIATED; DO NOT USE IT. FOR RESEARCH USE ONLY.
+             Get the Target scenario ID from the adapter.
+             </summary>
+            
+             <returns>
+             A string.
+             </returns>
+        </member>
+        <member name="M:TwoA.TwoA.UpdateRatings(System.String,System.String,System.String,System.String,System.Double,System.Double,System.Boolean)">
+             <summary>
+             Updates the ratings of the adapter.
+             </summary>
+            
+             <param name="adaptID">          Identifier for the adapt. </param>
+             <param name="gameID">           Identifier for the game. </param>
+             <param name="playerID">         Identifier for the player. </param>
+             <param name="scenarioID">       Identifier for the scenario. </param>
+             <param name="rt">               The right. </param>
+             <param name="correctAnswer">    The correct answer. </param>
+             <param name="updateDatafiles">  Set to true to update adaptation and gameplay logs files. </param>
+        </member>
+        <member name="M:TwoA.TwoA.CalculateScore(System.Double,System.Double,System.Double)">
+            <summary>
+            Calculates a normalized score based on player's performance defined by response time and accuracy.
+            </summary>
+            
+            <param name="correctAnswer">    1 if player provided correct answer and 0 otherwise</param>
+            <param name="responseTime">     Players response time in milliseconds</param>
+            <param name="itemMaxDuration">  Max allowed time in millisecond give to player to solve the problem.</param>
+            
+            <returns>A score within range (-1, 1)</returns>
+        </member>
+        <member name="M:TwoA.TwoA.CreateNewRecord(System.String,System.String,System.String,System.String,System.Double,System.Double,System.Double,System.Double,System.DateTime,System.Boolean)">
+             <summary>
+             Creates new record to the game log.
+             </summary>
+            
+             <param name="adaptID">          Identifier for the adapt. </param>
+             <param name="gameID">           Identifier for the game. </param>
+             <param name="playerID">         Identifier for the player. </param>
+             <param name="scenarioID">       Identifier for the scenario. </param>
+             <param name="rt">               The right. </param>
+             <param name="accuracy">         The correct answer. </param>
+             <param name="playerRating">     The player new rating. </param>
+             <param name="scenarioRating">   The scenario new rating. </param>
+             <param name="timestamp">        The current date time. </param>
+             <param name="updateDatafiles">  Set to true to update adaptation and gameplay logs files. </param>
+        </member>
+        <member name="M:TwoA.TwoA.SetTargetDistribution(System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            Sets the target distribution parameters to custom value.
+            </summary>
+            
+            <param name="mean">         Distribution mean.</param>
+            <param name="sd">           Distribution standard deviation.</param>
+            <param name="lowerLimit">   Distribution lower limit.</param>
+            <param name="upperLimit">   Distribution upper limit.</param>
+        </member>
+        <member name="M:TwoA.TwoA.SetDefaultTargetDistribution">
+            <summary>
+            Sets the target distribution parameters to default values.
+            </summary>
+        </member>
+        <member name="M:TwoA.TwoA.PlayerRating(System.String,System.String,System.String)">
+            <summary>
+            Get a value of Rating for a player.
+            </summary>
+            
+            <exception cref="T:System.NullReferenceException">    Thrown when matching player is not found 
+                                                         and null is returned. </exception>
+            
+            <param name="adaptID">      Identifier for the adapt. </param>
+            <param name="gameID">       Identifier for the game. </param>
+            <param name="playerID">     Identifier for the player. </param>
+            
+            <returns>
+            Rating as double value.
+            </returns>
+        </member>
+        <member name="M:TwoA.TwoA.PlayerPlayCount(System.String,System.String,System.String)">
+            <summary>
+            Get a value of PlayCount for a player.
+            </summary>
+            
+            <exception cref="T:System.NullReferenceException">    Thrown when matching player is not found 
+                                                         and null is returned. </exception>
+            
+            <param name="adaptID">      Identifier for the adapt. </param>
+            <param name="gameID">       Identifier for the game. </param>
+            <param name="playerID">     Identifier for the player. </param>
+            
+            <returns>
+            PlayCount as double value.
+            </returns>
+        </member>
+        <member name="M:TwoA.TwoA.PlayerKFactor(System.String,System.String,System.String)">
+            <summary>
+            Get a value of KFactor for a player.
+            </summary>
+            
+            <exception cref="T:System.NullReferenceException">    Thrown when matching player is not found 
+                                                         and null is returned. </exception>
+            
+            <param name="adaptID">      Identifier for the adapt. </param>
+            <param name="gameID">       Identifier for the game. </param>
+            <param name="playerID">     Identifier for the player. </param>
+            
+            <returns>
+            KFactor as double value.
+            </returns>
+        </member>
+        <member name="M:TwoA.TwoA.PlayerUncertainty(System.String,System.String,System.String)">
+            <summary>
+            Get a value of Uncertainty for a player.
+            </summary>
+            
+            <exception cref="T:System.NullReferenceException">    Thrown when matching player is not found 
+                                                         and null is returned. </exception>
+            
+            <param name="adaptID">      Identifier for the adapt. </param>
+            <param name="gameID">       Identifier for the game. </param>
+            <param name="playerID">     Identifier for the player. </param>
+            
+            <returns>
+            Uncertainty as double value.
+            </returns>
+        </member>
+        <member name="M:TwoA.TwoA.PlayerLastPlayed(System.String,System.String,System.String)">
+            <summary>
+            Get a value of LastPlayed for a player.
+            </summary>
+            
+            <exception cref="T:System.NullReferenceException">    Thrown when matching player is not found 
+                                                         and null is returned. </exception>
+            
+            <param name="adaptID">      Identifier for the adapt. </param>
+            <param name="gameID">       Identifier for the game. </param>
+            <param name="playerID">     Identifier for the player. </param>
+            
+            <returns>
+            LastPlayed as DateTime object.
+            </returns>
+        </member>
+        <member name="M:TwoA.TwoA.PlayerRating(System.String,System.String,System.String,System.Double)">
+            <summary>
+            Set a Rating value for a player.
+            </summary>
+            
+            <exception cref="T:System.NullReferenceException">    Thrown when matching player is not found 
+                                                         and null is returned. </exception>
+            
+            <param name="adaptID">      Identifier for the adapt. </param>
+            <param name="gameID">       Identifier for the game. </param>
+            <param name="playerID">     Identifier for the player. </param>
+            <param name="rating">       The value of Rating. </param>
+        </member>
+        <member name="M:TwoA.TwoA.PlayerPlayCount(System.String,System.String,System.String,System.Double)">
+            <summary>
+            Set a PlayCount value for a player.
+            </summary>
+            
+            <exception cref="T:System.NullReferenceException">    Thrown when matching player is not found 
+                                                         and null is returned. </exception>
+            
+            <param name="adaptID">      Identifier for the adapt. </param>
+            <param name="gameID">       Identifier for the game. </param>
+            <param name="playerID">     Identifier for the player. </param>
+            <param name="playCount">    The value of PlayCount. </param>
+        </member>
+        <member name="M:TwoA.TwoA.PlayerKFactor(System.String,System.String,System.String,System.Double)">
+            <summary>
+            Set a KFactor value for a player.
+            </summary>
+            
+            <exception cref="T:System.NullReferenceException">    Thrown when matching player is not found 
+                                                         and null is returned. </exception>
+            
+            <param name="adaptID">      Identifier for the adapt. </param>
+            <param name="gameID">       Identifier for the game. </param>
+            <param name="playerID">     Identifier for the player. </param>
+            <param name="kFactor">      The value of KFactor. </param>
+        </member>
+        <member name="M:TwoA.TwoA.PlayerUncertainty(System.String,System.String,System.String,System.Double)">
+            <summary>
+            Set an Uncertainty value for a player.
+            </summary>
+            
+            <exception cref="T:System.NullReferenceException">    Thrown when matching player is not found 
+                                                         and null is returned. </exception>
+            
+            <param name="adaptID">      Identifier for the adapt. </param>
+            <param name="gameID">       Identifier for the game. </param>
+            <param name="playerID">     Identifier for the player. </param>
+            <param name="uncertainty">  The value of Uncertainty. </param>
+        </member>
+        <member name="M:TwoA.TwoA.PlayerLastPlayed(System.String,System.String,System.String,System.DateTime)">
+            <summary>
+            Set a LastPlayed datetime for a player.
+            </summary>
+            
+            <exception cref="T:System.NullReferenceException">    Thrown when matching player is not found 
+                                                         and null is returned. </exception>
+            
+            <param name="adaptID">      Identifier for the adapt. </param>
+            <param name="gameID">       Identifier for the game. </param>
+            <param name="playerID">     Identifier for the player. </param>
+            <param name="lastPlayed">   The DateTime object for LastPlayed datetime. </param>
+        </member>
+        <member name="M:TwoA.TwoA.Player(System.String,System.String,System.String)">
+             <summary>
+             Get a PlayerNode with a given player ID.
+             </summary>
+            
+             <param name="adaptID">  Identifier for the adapt. </param>
+             <param name="gameID">   Identifier for the game. </param>
+             <param name="playerID"> Identifier for the player. </param>
+            
+             <returns>
+             PlayerNode object, or null if no ID match is found.
+             </returns>
+        </member>
+        <member name="M:TwoA.TwoA.ScenarioRating(System.String,System.String,System.String)">
+            <summary>
+            Get a value of Rating for a scenario.
+            </summary>
+            
+            <exception cref="T:System.NullReferenceException">    Thrown when matching scenario is not found 
+                                                         and null is returned. </exception>
+            
+            <param name="adaptID">      Identifier for the adapt. </param>
+            <param name="gameID">       Identifier for the game. </param>
+            <param name="scenarioID">   Identifier for the scenario. </param>
+            
+            <returns>
+            Rating as double value.
+            </returns>
+        </member>
+        <member name="M:TwoA.TwoA.ScenarioPlayCount(System.String,System.String,System.String)">
+            <summary>
+            Get a value of PlayCount for a scenario.
+            </summary>
+            
+            <exception cref="T:System.NullReferenceException">    Thrown when matching scenario is not found 
+                                                         and null is returned. </exception>
+            
+            <param name="adaptID">      Identifier for the adapt. </param>
+            <param name="gameID">       Identifier for the game. </param>
+            <param name="scenarioID">   Identifier for the scenario. </param>
+            
+            <returns>
+            PlayCount as double value.
+            </returns>
+        </member>
+        <member name="M:TwoA.TwoA.ScenarioKFactor(System.String,System.String,System.String)">
+            <summary>
+            Get a value of KFactor for a scenario.
+            </summary>
+            
+            <exception cref="T:System.NullReferenceException">    Thrown when matching scenario is not found 
+                                                         and null is returned. </exception>
+            
+            <param name="adaptID">      Identifier for the adapt. </param>
+            <param name="gameID">       Identifier for the game. </param>
+            <param name="scenarioID">   Identifier for the scenario. </param>
+            
+            <returns>
+            KFactor as double value.
+            </returns>
+        </member>
+        <member name="M:TwoA.TwoA.ScenarioUncertainty(System.String,System.String,System.String)">
+            <summary>
+            Get a value of Uncertainty for a scenario.
+            </summary>
+            
+            <exception cref="T:System.NullReferenceException">    Thrown when matching scenario is not found 
+                                                         and null is returned. </exception>
+            
+            <param name="adaptID">      Identifier for the adapt. </param>
+            <param name="gameID">       Identifier for the game. </param>
+            <param name="scenarioID">   Identifier for the scenario. </param>
+            
+            <returns>
+            Uncertainty as double value.
+            </returns>
+        </member>
+        <member name="M:TwoA.TwoA.ScenarioLastPlayed(System.String,System.String,System.String)">
+            <summary>
+            Get a value of LastPlayed for a scenario.
+            </summary>
+            
+            <exception cref="T:System.NullReferenceException">    Thrown when matching scenario is not found 
+                                                         and null is returned. </exception>
+            
+            <param name="adaptID">      Identifier for the adapt. </param>
+            <param name="gameID">       Identifier for the game. </param>
+            <param name="scenarioID">   Identifier for the scenario. </param>
+            
+            <returns>
+            LastPlayed as DateTime object.
+            </returns>
+        </member>
+        <member name="M:TwoA.TwoA.ScenarioTimeLimit(System.String,System.String,System.String)">
+            <summary>
+            Get a value of TimeLimit for a scenario.
+            </summary>
+            
+            <exception cref="T:System.NullReferenceException">    Thrown when matching scenario is not found 
+                                                         and null is returned. </exception>
+            
+            <param name="adaptID">      Identifier for the adapt. </param>
+            <param name="gameID">       Identifier for the game. </param>
+            <param name="scenarioID">   Identifier for the scenario. </param>
+            
+            <returns>
+            TimeLimit as double value.
+            </returns>
+        </member>
+        <member name="M:TwoA.TwoA.ScenarioRating(System.String,System.String,System.String,System.Double)">
+            <summary>
+            Set a Rating value for a scenario.
+            </summary>
+            
+            <exception cref="T:System.NullReferenceException">    Thrown when matching scenario is not found 
+                                                         and null is returned. </exception>
+            
+            <param name="adaptID">      Identifier for the adapt. </param>
+            <param name="gameID">       Identifier for the game. </param>
+            <param name="scenarioID">   Identifier for the scenario. </param>
+            <param name="rating">       The value of Rating. </param>
+        </member>
+        <member name="M:TwoA.TwoA.ScenarioPlayCount(System.String,System.String,System.String,System.Double)">
+            <summary>
+            Set a PlayCount value for a scenario.
+            </summary>
+            
+            <exception cref="T:System.NullReferenceException">    Thrown when matching scenario is not found 
+                                                         and null is returned. </exception>
+            
+            <param name="adaptID">      Identifier for the adapt. </param>
+            <param name="gameID">       Identifier for the game. </param>
+            <param name="scenarioID">   Identifier for the scenario. </param>
+            <param name="playCount">    The value of PlayCount. </param>
+        </member>
+        <member name="M:TwoA.TwoA.ScenarioKFactor(System.String,System.String,System.String,System.Double)">
+            <summary>
+            Set a KFactor value for a scenario.
+            </summary>
+            
+            <exception cref="T:System.NullReferenceException">    Thrown when matching scenario is not found 
+                                                         and null is returned. </exception>
+            
+            <param name="adaptID">      Identifier for the adapt. </param>
+            <param name="gameID">       Identifier for the game. </param>
+            <param name="scenarioID">   Identifier for the scenario. </param>
+            <param name="kFactor">      The value of KFactor. </param>
+        </member>
+        <member name="M:TwoA.TwoA.ScenarioUncertainty(System.String,System.String,System.String,System.Double)">
+            <summary>
+            Set an Uncertainty value for a scenario.
+            </summary>
+            
+            <exception cref="T:System.NullReferenceException">    Thrown when matching scenario is not found 
+                                                         and null is returned. </exception>
+            
+            <param name="adaptID">      Identifier for the adapt. </param>
+            <param name="gameID">       Identifier for the game. </param>
+            <param name="scenarioID">   Identifier for the scenario. </param>
+            <param name="uncertainty">  The value of Uncertainty. </param>
+        </member>
+        <member name="M:TwoA.TwoA.ScenarioLastPlayed(System.String,System.String,System.String,System.DateTime)">
+            <summary>
+            Set a LastPlayed datetime for a scenario.
+            </summary>
+            
+            <exception cref="T:System.NullReferenceException">    Thrown when matching scenario is not found 
+                                                         and null is returned. </exception>
+            
+            <param name="adaptID">      Identifier for the adapt. </param>
+            <param name="gameID">       Identifier for the game. </param>
+            <param name="scenarioID">   Identifier for the scenario. </param>
+            <param name="lastPlayed">   The DateTime object for LastPlayed datetime. </param>
+        </member>
+        <member name="M:TwoA.TwoA.ScenarioTimeLimit(System.String,System.String,System.String,System.Double)">
+            <summary>
+            Set a TimeLimit for a scenario.
+            </summary>
+            
+            <exception cref="T:System.NullReferenceException">    Thrown when matching scenario is not found 
+                                                         and null is returned. </exception>
+            
+            <param name="adaptID">      Identifier for the adapt. </param>
+            <param name="gameID">       Identifier for the game. </param>
+            <param name="scenarioID">   Identifier for the scenario. </param>
+            <param name="timeLimit">    The value of TimeLimit. </param>
+        </member>
+        <member name="M:TwoA.TwoA.Scenario(System.String,System.String,System.String)">
+             <summary>
+             Get a ScenarioNode with a given scenario ID.
+             </summary>
+            
+             <param name="adaptID">    Identifier for the adapt. </param>
+             <param name="gameID">     Identifier for the game. </param>
+             <param name="scenarioID"> Identifier for the scenario. </param>
+            
+             <returns>
+             ScenarioNode object, or null if no ID match is found.
+             </returns>
+        </member>
+        <member name="M:TwoA.TwoA.LoadAdaptationData">
+            <summary>
+            Loads adaptation data.
+            </summary>
+        </member>
+        <member name="M:TwoA.TwoA.SaveAdaptationData">
+            <summary>
+            Saves AdaptationData to local XML file. Needs IDataStorage interface from RAGE architecture.
+            </summary>
+        </member>
+        <member name="M:TwoA.TwoA.LoadGameplayData">
+            <summary>
+            Loads gameplay data.
+            </summary>
+        </member>
+        <member name="M:TwoA.TwoA.SaveGameplayData">
+            <summary>
+            Saves GameplaysData to local XML file. Needs IDataStorage interface from RAGE architecture.
+            </summary>
+        </member>
+        <member name="P:TwoA.TwoA.DateFormat">
+             <summary>
+             Gets datetime format
+             </summary>
+            
+             <value>
+             Datetime format as string.
+             </value> 
+        </member>
+        <member name="P:TwoA.TwoA.GameplaysData">
+            <summary>
+            Gets gameplay records
+            </summary>
+        </member>
+        <member name="P:TwoA.TwoA.AdaptationData">
+            <summary>
+            Gets adaptation data
+            </summary>
+        </member>
+        <member name="T:TwoA.TwoA.StringWriterUtf8">
+             <summary>
+             A string writer utf-8.
+             </summary>
+            
+             <remarks>
+             Fix-up for XDocument Serialization defaulting to utf-16.
+             </remarks>
+        </member>
+        <member name="T:TwoA.KSGenerator">
+            <summary>
+            The main class for generating a knowledge structure from diifficulty ratings.
+            </summary>
+        </member>
+        <member name="F:TwoA.KSGenerator.UNASSIGNED_RATING">
+            <summary>
+            The value is used to indicate that a rating was not assigned a valid value.
+            </summary>
+        </member>
+        <member name="F:TwoA.KSGenerator.UNASSIGNED_RANK">
+            <summary>
+            The value is used to indicate that a rank was not assigned a valid index.
+            </summary>
+        </member>
+        <member name="F:TwoA.KSGenerator.UNASSIGNED_THRESHOLD">
+            <summary>
+            The value is used to indicate that a threshold was not assigned a valid value.
+            </summary>
+        </member>
+        <member name="F:TwoA.KSGenerator.DEFAULT_THRESHOLD">
+            <summary>
+            A default value for a threshold.
+            </summary>
+        </member>
+        <member name="F:TwoA.KSGenerator.MIN_THRESHOLD">
+            <summary>
+            Min valid value of a threshold (inclusive).
+            </summary>
+        </member>
+        <member name="F:TwoA.KSGenerator.MAX_THRESHOLD">
+            <summary>
+            Max valid value of a threshold (exclusive).
+            </summary>
+        </member>
+        <member name="F:TwoA.KSGenerator.DEFAULT_SAME_PROBABILITY">
+            <summary>
+            Default sameness probability.
+            </summary>
+        </member>
+        <member name="F:TwoA.KSGenerator.MIN_SAME_PROBABILITY">
+            <summary>
+            Min valid sameness probability.
+            </summary>
+        </member>
+        <member name="F:TwoA.KSGenerator.MAX_SAME_PROBABILITY">
+            <summary>
+            Max valid sameness probability.
+            </summary>
+        </member>
+        <member name="F:TwoA.KSGenerator.ROOT_STATE">
+            <summary>
+            State type: 'root'
+            </summary>
+        </member>
+        <member name="F:TwoA.KSGenerator.CORE_STATE">
+            <summary>
+            State type: 'core'
+            </summary>
+        </member>
+        <member name="F:TwoA.KSGenerator.EXPANDED_STATE">
+            <summary>
+            State type: 'expanded'
+            </summary>
+        </member>
+        <member name="M:TwoA.KSGenerator.#ctor(TwoA.TwoA,System.Double)">
+            <summary>
+            Initializes a new instance of the TwoA.KSGenerator class with a custom threshold.
+            </summary>
+            
+            <param name="asset">        The asset. </param>
+            <param name="threshold">    A custom threshold value. </param>
+        </member>
+        <member name="M:TwoA.KSGenerator.#ctor(TwoA.TwoA)">
+            <summary>
+            Initializes a new instance of the TwoA.KSGenerator class with a default threshold value.
+            </summary>
+            
+            <param name="asset">The asset.</param>
+        </member>
+        <member name="M:TwoA.KSGenerator.createExpandedKStructure(TwoA.KStructure)">
+            <summary>
+            Expands the specified knowledge structure with new states by applying Rule 2.
+            </summary>
+            
+            <param name="ks">Knowledge structure to be expanded with new states.</param>
+            
+            <returns>Expanded knowledge structure</returns>
+        </member>
+        <member name="M:TwoA.KSGenerator.createKStructure(TwoA.RankOrder)">
+            <summary>
+            Generates a knowledge structure (KStructure object) from a ranked order (RankOrder object) by applying Rule 1.
+            </summary>
+            
+            <param name="rankOrder">RankOrder object that is used to generate a knowledge structure.</param>
+            
+            <returns>KStructure object, or null if error occured.</returns>
+        </member>
+        <member name="M:TwoA.KSGenerator.createRankOrder(System.Double[])">
+            <summary>
+            Creates a rank order from an array of difficulty ratings. Category IDs are auto generated.
+            </summary>
+            
+            <param name="ratings">Array of difficulty ratings to be used for generating a rank order.</param>
+            
+            <returns>RankOrder object</returns>
+        </member>
+        <member name="M:TwoA.KSGenerator.createRankOrder(System.Collections.Generic.List{System.Double})">
+            <summary>
+            Creates a rank order from a list of difficulty ratings. Category IDs are auto generated.
+            </summary>
+            
+            <param name="ratings">List of difficulty ratings to be used for generating a rank order.</param>
+            
+            <returns>RankObject object</returns>
+        </member>
+        <member name="M:TwoA.KSGenerator.createRankOrder(System.Collections.Generic.List{TwoA.PCategory})">
+            <summary>
+            Creates a rank order from a list of categories with difficulty ratings.
+            </summary>
+            
+            <param name="categories">List of categories.</param>
+            
+            <returns>RankOrder object</returns>
+        </member>
+        <member name="M:TwoA.KSGenerator.isSignificantlyDifferent(System.Double,System.Double)">
+            <summary>
+            returns true if two difficulty ratings are significantly diffferent
+            </summary>
+            
+            <param name="betaOne">first difficulty rating</param>
+            <param name="betaTwo">second difficulty rating</param>
+            
+            <returns>boolean</returns>
+        </member>
+        <member name="M:TwoA.KSGenerator.calcDifferenceProbability(System.Double,System.Double)">
+            <summary>
+            Calculates probability of difference of two difficulty ratings.
+            </summary>
+            
+            <param name="betaOne">first difficulty rating</param>
+            <param name="betaTwo">second difficulty rating</param>
+            
+            <returns>a value in range [0, 0.5) indicating probability in difficulty difference</returns>
+        </member>
+        <member name="M:TwoA.KSGenerator.getStateID(System.Int32,System.Int32)">
+            <summary>
+            Generates a knowledge state ID based on its rank index and the number of existing states in the same rank
+            </summary>
+            
+            <param name="rankIndex">states rank index</param>
+            <param name="stateCounter">the number of existing states in the same rank</param>
+            
+            <returns>state ID as string</returns>
+        </member>
+        <member name="M:TwoA.KSGenerator.validThreshold(System.Double)">
+            <summary>
+            Returns true if threshold value has a valid range, and false otherwise.
+            </summary>
+            
+            <param name="threshold">threshold value to be verified</param>
+            
+            <returns>boolean</returns>
+        </member>
+        <member name="M:TwoA.KSGenerator.Log(AssetPackage.Severity,System.String)">
+            <summary>
+            Sends a log message to the asset
+            </summary>
+            
+            <param name="severity"> Message severity type</param>
+            <param name="logStr">   Log message</param>
+        </member>
+        <member name="P:TwoA.KSGenerator.Threshold">
+            <summary>
+            getter/setter for threshold variable
+            </summary>
+        </member>
+        <member name="P:TwoA.KSGenerator.SameProbability">
+            <summary>
+            Getter/Setter for sameProbability variable.
+            It is strongly advised not to change it from the default value. The setter is provide for future uses where a different estimation algorithm might be used.
+            </summary>
+        </member>
+        <member name="P:TwoA.KSGenerator.Asset">
+            <summary>
+            Getter/setter for the instance of the TwoA asset
+            </summary>
+        </member>
+        <member name="T:TwoA.SimpleRNG">
+            <summary>
+            A simple random number generator.
+            </summary>
+        </member>
+        <member name="M:TwoA.SimpleRNG.#cctor">
+            <summary>
+            Initializes static members of the TwoA.SimpleRNG class.
+            </summary>
+        </member>
+        <member name="M:TwoA.SimpleRNG.SetSeed(System.UInt32,System.UInt32)">
+             <summary>
+             The random generator seed can be set three ways: 1) specifying two non-
+             zero unsigned integers 2) specifying one non-zero unsigned integer and
+             taking a default value for the second 3) setting the seed from the system
+             time.
+             </summary>
+            
+             <param name="u"> The uint to process. </param>
+             <param name="v"> The uint to process. </param>
+        </member>
+        <member name="M:TwoA.SimpleRNG.SetSeed(System.UInt32)">
+             <summary>
+             The random generator seed can be set three ways: 1) specifying two non-
+             zero unsigned integers 2) specifying one non-zero unsigned integer and
+             taking a default value for the second 3) setting the seed from the system
+             time.
+             </summary>
+            
+             <param name="u"> The uint to process. </param>
+        </member>
+        <member name="M:TwoA.SimpleRNG.SetSeedFromRandom">
+            <summary>
+            Sets seeds to random numbers using Random object
+            </summary>
+        </member>
+        <member name="M:TwoA.SimpleRNG.SetSeedFromSystemTime">
+            <summary>
+            Sets seed from system time.
+            </summary>
+        </member>
+        <member name="M:TwoA.SimpleRNG.Next(System.Int32)">
+            <summary>
+            Return a non-negative random number less than the specified maximum. Uses default Random class.
+            </summary>
+            
+            <param name="max">maximum value</param>
+            
+            <returns>integer</returns>
+        </member>
+        <member name="M:TwoA.SimpleRNG.GetUniform">
+             <summary>
+             Produce a uniform random sample from the open interval (0, 1). The method
+             will not return either end point.
+             </summary>
+            
+             <returns>
+             The uniform.
+             </returns>
+        </member>
+        <member name="M:TwoA.SimpleRNG.GetUint">
+             <summary>
+             This is the heart of the generator. It uses George Marsaglia's MWC
+             algorithm to produce an unsigned integer.
+             
+             See http://www.bobwheeler.com/statistics/Password/MarsagliaPost.txt.
+             </summary>
+            
+             <returns>
+             The uint.
+             </returns>
+        </member>
+        <member name="M:TwoA.SimpleRNG.GetNormal">
+             <summary>
+             Get normal (Gaussian) random sample with mean 0 and standard deviation 1.
+             </summary>
+            
+             <returns>
+             The normal.
+             </returns>
+        </member>
+        <member name="M:TwoA.SimpleRNG.GetNormal(System.Double,System.Double)">
+             <summary>
+             Get normal (Gaussian) random sample with specified mean and standard
+             deviation.
+             </summary>
+            
+             <exception cref="T:System.ArgumentOutOfRangeException">  Thrown when one or more
+                                                             arguments are outside the
+                                                             required range. </exception>
+            
+             <param name="mean">              The mean. </param>
+             <param name="standardDeviation"> The standard deviation. </param>
+            
+             <returns>
+             The normal.
+             </returns>
+        </member>
+        <member name="M:TwoA.SimpleRNG.GetNormal(System.Double,System.Double,System.Boolean)">
+             <summary>
+             Get a random sample from a one-sided normal (Gaussian) distribution 
+             with specified mean and standard deviation.
+             </summary>
+            
+             <param name="mean">              The mean. </param>
+             <param name="standardDeviation"> The standard deviation. </param>
+             <param name="left">			     If true sample will be generator from left side, and right side otherwise. </param>
+            
+             <returns>
+             The normal.
+             </returns>
+        </member>
+        <member name="M:TwoA.SimpleRNG.GetExponential">
+             <summary>
+             Get exponential random sample with mean 1.
+             </summary>
+            
+             <returns>
+             The exponential.
+             </returns>
+        </member>
+        <member name="M:TwoA.SimpleRNG.GetExponential(System.Double)">
+             <summary>
+             Get exponential random sample with specified mean.
+             </summary>
+            
+             <exception cref="T:System.ArgumentOutOfRangeException">  Thrown when one or more
+                                                             arguments are outside the
+                                                             required range. </exception>
+            
+             <param name="mean"> The mean. </param>
+            
+             <returns>
+             The exponential.
+             </returns>
+        </member>
+        <member name="M:TwoA.SimpleRNG.GetGamma(System.Double,System.Double)">
+             <summary>
+             Gets a gamma.
+             </summary>
+            
+             <exception cref="T:System.ArgumentOutOfRangeException">  Thrown when one or more
+                                                             arguments are outside the
+                                                             required range. </exception>
+            
+             <param name="shape"> The shape. </param>
+             <param name="scale"> The scale. </param>
+            
+             <returns>
+             The gamma.
+             </returns>
+        </member>
+        <member name="M:TwoA.SimpleRNG.GetChiSquare(System.Double)">
+             <summary>
+             Gets chi square.
+             </summary>
+            
+             <param name="degreesOfFreedom"> The degrees of freedom. </param>
+            
+             <returns>
+             The chi square.
+             </returns>
+        </member>
+        <member name="M:TwoA.SimpleRNG.GetInverseGamma(System.Double,System.Double)">
+             <summary>
+             Gets inverse gamma.
+             </summary>
+            
+             <param name="shape"> The shape. </param>
+             <param name="scale"> The scale. </param>
+            
+             <returns>
+             The inverse gamma.
+             </returns>
+        </member>
+        <member name="M:TwoA.SimpleRNG.GetWeibull(System.Double,System.Double)">
+             <summary>
+             Gets a weibull.
+             </summary>
+            
+             <exception cref="T:System.ArgumentOutOfRangeException">  Thrown when one or more
+                                                             arguments are outside the
+                                                             required range. </exception>
+            
+             <param name="shape"> The shape. </param>
+             <param name="scale"> The scale. </param>
+            
+             <returns>
+             The weibull.
+             </returns>
+        </member>
+        <member name="M:TwoA.SimpleRNG.GetCauchy(System.Double,System.Double)">
+             <summary>
+             Gets a cauchy.
+             </summary>
+            
+             <exception cref="T:System.ArgumentException">    Thrown when one or more arguments
+                                                     have unsupported or illegal values. </exception>
+            
+             <param name="median"> The median. </param>
+             <param name="scale">  The scale. </param>
+            
+             <returns>
+             The cauchy.
+             </returns>
+        </member>
+        <member name="M:TwoA.SimpleRNG.GetStudentT(System.Double)">
+             <summary>
+             Gets student.
+             </summary>
+            
+             <exception cref="T:System.ArgumentException">    Thrown when one or more arguments
+                                                     have unsupported or illegal values. </exception>
+            
+             <param name="degreesOfFreedom"> The degrees of freedom. </param>
+            
+             <returns>
+             The student.
+             </returns>
+        </member>
+        <member name="M:TwoA.SimpleRNG.GetLaplace(System.Double,System.Double)">
+             <summary>
+             The Laplace distribution is also known as the double exponential
+             distribution.
+             </summary>
+            
+             <param name="mean">  The mean. </param>
+             <param name="scale"> The scale. </param>
+            
+             <returns>
+             The laplace.
+             </returns>
+        </member>
+        <member name="M:TwoA.SimpleRNG.GetLogNormal(System.Double,System.Double)">
+             <summary>
+             Gets log normal.
+             </summary>
+            
+             <param name="mu">    The mu. </param>
+             <param name="sigma"> The sigma. </param>
+            
+             <returns>
+             The log normal.
+             </returns>
+        </member>
+        <member name="M:TwoA.SimpleRNG.GetBeta(System.Double,System.Double)">
+             <summary>
+             Gets a beta.
+             </summary>
+            
+             <exception cref="T:System.ArgumentOutOfRangeException">  Thrown when one or more
+                                                             arguments are outside the
+                                                             required range. </exception>
+            
+             <param name="a"> The double to process. </param>
+             <param name="b"> The double to process. </param>
+            
+             <returns>
+             The beta.
+             </returns>
+        </member>
+    </members>
+</doc>
